@@ -60,12 +60,20 @@
 <script>
   window.addEventListener('keydown', function(e){
     // body
-    var audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    var audio = document.querySelector(`audio[data-key = "${e.keyCode}"]`);
+    var keyDiv = document.querySelector(`.key[data-key = "${e.keyCode}"]`);
     if (!audio) return;
     audio.currentTime = 0;
     audio.play();
-
+    keyDiv.classList.add('playing');
   });
+
+  var keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removePlayingClass));
+
+  function removePlayingClass(e){
+    e.target.classList.remove('playing')
+  }
 </script>
 
 
