@@ -68,6 +68,15 @@
       transition-timing-function: cubic-bezier(.23,1.72,.58,1);
     }
 
+    .second-hand {
+      background: red;
+    }
+
+    .hour-hand {
+      width: 40%;
+      left: 10%;
+    }
+
   </style>
 
   <script>
@@ -80,12 +89,12 @@
       var seconds = now.getSeconds();
       var minutes = now.getMinutes();
       var hours = now.getHours();
-      var secondsDegrees = seconds * 6;
-      var minutesDegrees = minutes * 6;
-      var hoursDegrees = hours * 6;
-      secondHand.style.transform = `rotate(${secondsDegrees + 90}deg)`
-      minuteHand.style.transform = `rotate(${minutesDegrees + 90}deg)`
-      hourHand.style.transform = `rotate(${hoursDegrees + 90}deg)`
+      var secondsDegrees = seconds * 6 + 90;
+      var minutesDegrees = minutes * 6 + 90;
+      var hoursDegrees = hours * 6 + 90;
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`
+      hourHand.style.transform = `rotate(${hoursDegrees}deg)`
       // console.log(seconds);
     }
 
