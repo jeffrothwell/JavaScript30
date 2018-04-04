@@ -86,21 +86,26 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-    var alphabeticalPeople = people.sort(function(a, b){
-      if (a.split(",")[0] < b.split(",")[0]) {
-        return -1;
-      } else if (a.split(",")[0] > b.split(",")[0]) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+    var alphabeticalPeople = people.sort((a, b) => a.split(",")[0] < b.split(",")[0] ? -1 : 1);
 
     console.log(alphabeticalPeople);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    function countModeInstance(modeInstances, thisMode){
+      if (!modeInstances[thisMode]) {
+        modeInstances[thisMode] = 1;
+      } else {
+        modeInstances[thisMode] += 1;
+      }
+      return modeInstances;
+    };
+
+    var instances = data.reduce(countModeInstance, {});
+
+    console.log(instances);
 
   </script>
 </body>
