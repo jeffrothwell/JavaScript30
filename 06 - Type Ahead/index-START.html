@@ -27,6 +27,28 @@
   // in each element of data as a separate argument, so then
   // cities has each element of data at the top level - COOL!
   .then(data => cities.push(...data))
+
+  function findMatches(wordToMatch, cities){
+    // first construct the regex that will match
+    // the 'gi' arguments are g for global, search the entire array
+    // and i for case insensitive
+    var regEx = new RegExp(wordToMatch, 'gi')
+    return cities.filter(city => {
+      return city.city.match(regEx) || city.state.match(regEx)
+    })
+  };
+
+  function displayMatches(){
+    var matchArray = findMatches(this.value, cities)
+    console.log(matchArray);
+  }
+
+  var searchInput = document.querySelector('.search');
+  var resultsList = document.querySelector('.suggestions');
+
+  searchInput.addEventListener('change', displayMatches);
+  searchInput.addEventListener('keyup', displayMatches);
+
 </script>
   </body>
 </html>
