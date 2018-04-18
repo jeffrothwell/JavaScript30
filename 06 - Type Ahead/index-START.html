@@ -19,8 +19,14 @@
 
   const cities = [];
 
-  var prom = fetch(endpoint);
-  console.log(prom);
+  fetch(endpoint)
+  .then(blob => blob.json())
+  // the ... on next line is the ES6 spread method
+  // without it, data would be passed into cities via push as a single
+  // array object nested one level deep - the spread passes
+  // in each element of data as a separate argument, so then
+  // cities has each element of data at the top level - COOL!
+  .then(data => cities.push(...data))
 </script>
   </body>
 </html>
