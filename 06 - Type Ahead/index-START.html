@@ -40,7 +40,16 @@
 
   function displayMatches(){
     var matchArray = findMatches(this.value, cities)
-    console.log(matchArray);
+    var html = matchArray.map(city => {
+      return `
+      <li>
+        <span class="name">${city.city}, ${city.state}</span>
+        <span class="population">${city.population}</span>
+      </li>
+      `;
+    });
+
+    resultsList.innerHTML = html.join('')
   }
 
   var searchInput = document.querySelector('.search');
