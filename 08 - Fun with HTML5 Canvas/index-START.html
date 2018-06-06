@@ -16,14 +16,17 @@
   ctx.strokeStyle = '#BADA55';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
+  ctx.lineWidth = 100;
 
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
+  let hue = 0;
 
   function draw(e) {
     if (!isDrawing) return;
-    console.log(e);
+    console.log(hue);
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
     ctx.beginPath();
     // start from
     ctx.moveTo(lastX, lastY);
@@ -31,6 +34,11 @@
     ctx.lineTo(e.x, e.y);
     ctx.stroke();
     [lastX, lastY] = [e.x, e.y];
+    hue++;
+
+    if (hue >= 360) {
+      hue = hue - 360
+    }
   }
 
   canvas.addEventListener('mousemove', draw);
