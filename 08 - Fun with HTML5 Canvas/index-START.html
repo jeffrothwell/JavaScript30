@@ -28,7 +28,7 @@
     // start from
     ctx.moveTo(lastX, lastY);
     // go to
-    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.lineTo(e.x, e.y);
     ctx.stroke();
     [lastX, lastY] = [e.x, e.y];
   }
