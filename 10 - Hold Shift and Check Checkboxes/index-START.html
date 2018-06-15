@@ -132,19 +132,15 @@
       // as we iterate through the collection
       var checking = false
       checkboxes.forEach(box => {
-        // we find either our lastChecked or our event target and are
-        // not currently checking all - this is where we'll start checking
-        if ((box === lastChecked || box === e.target) && !checking) {
+        // we find either our lastChecked or our event target
+        // this means we're at the bounds of where to check boxes
+        if (box === lastChecked || box === e.target) {
           //toggle checking on/off
           checking = !checking
           return;
-        // find a checked box and we're already checking
-        } else if ((box === lastChecked || box === e.target) && checking) {
-          //toggle checking on/off
-          checking = !checking
-          return;
-        // come across an unchecked box and are currently checking
-        } else if (!box.checked && checking) {
+        }
+
+        if (checking) {
           box.checked = true
           return;
         }
