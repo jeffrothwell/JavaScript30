@@ -99,7 +99,9 @@
   </div>
 
 <script>
+  var multiSelect = false;
   const checkboxes = Array.from(document.querySelectorAll('input'));
+  // This is more cross-browser compatible (Array.from is an ES6 thing)
   // const checkboxes = Array.prototype.slice.call(document.querySelectorAll('input'));
 
   function otherBoxesChecked () {
@@ -109,14 +111,21 @@
   }
 
   const enableMultiSelect = e => {
-    if (e.key != "Shift" || otherBoxesChecked() === 0) {
-      return;
+    if (e.key === "Shift" && otherBoxesChecked() > 0) {
+      multiSelect = true;
     }
-    console.log(otherBoxesChecked());
+    console.log(multiSelect);
+  }
+
+  const disableMultiSelect = e => {
+    if (e.key === "Shift" || otherBoxesChecked() === 0) {
+      multiSelect = false;
+    }
+    console.log(multiSelect);
   }
 
   window.addEventListener('keydown', enableMultiSelect);
-
+  window.addEventListener('keyup', disableMultiSelect);
 
 </script>
 </body>
