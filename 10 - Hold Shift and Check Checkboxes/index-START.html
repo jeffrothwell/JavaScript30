@@ -82,7 +82,7 @@
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Try do it without any libraries</p>
+      <p>Try to do it without any libraries</p>
     </div>
     <div class="item">
       <input type="checkbox">
@@ -99,6 +99,25 @@
   </div>
 
 <script>
+  const checkboxes = Array.from(document.querySelectorAll('input'));
+  // const checkboxes = Array.prototype.slice.call(document.querySelectorAll('input'));
+
+  function otherBoxesChecked () {
+    return checkboxes.filter(box => {
+      return box.checked;
+    }).length;
+  }
+
+  const enableMultiSelect = e => {
+    if (e.key != "Shift" || otherBoxesChecked() === 0) {
+      return;
+    }
+    console.log(otherBoxesChecked());
+  }
+
+  window.addEventListener('keydown', enableMultiSelect);
+
+
 </script>
 </body>
 </html>
