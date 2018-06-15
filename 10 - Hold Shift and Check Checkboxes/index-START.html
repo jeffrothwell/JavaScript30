@@ -107,21 +107,19 @@
   function otherBoxesChecked () {
     return checkboxes.filter(box => {
       return box.checked;
-    }).length;
+    });
   }
 
   const enableMultiSelect = e => {
-    if (e.key === "Shift" && otherBoxesChecked() > 0) {
+    if (e.key === "Shift" && otherBoxesChecked().length > 0) {
       multiSelect = true;
     }
-    console.log(multiSelect);
   }
 
   const disableMultiSelect = e => {
-    if (e.key === "Shift" || otherBoxesChecked() === 0) {
+    if (e.key === "Shift" || otherBoxesChecked().length === 0) {
       multiSelect = false;
     }
-    console.log(multiSelect);
   }
 
   window.addEventListener('keydown', enableMultiSelect);
