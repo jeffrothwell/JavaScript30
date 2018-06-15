@@ -135,13 +135,13 @@
         // we find either our lastChecked or our event target and are
         // not currently checking all - this is where we'll start checking
         if ((box === lastChecked || box === e.target) && !checking) {
-          //turn on checking
-          checking = true
+          //toggle checking on/off
+          checking = !checking
           return;
         // find a checked box and we're already checking
         } else if ((box === lastChecked || box === e.target) && checking) {
-          // turn off checking
-          checking = false
+          //toggle checking on/off
+          checking = !checking
           return;
         // come across an unchecked box and are currently checking
         } else if (!box.checked && checking) {
