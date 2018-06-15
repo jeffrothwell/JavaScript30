@@ -122,6 +122,8 @@
     }
   }
 
+  let lastChecked;
+
   const checkMultiple = e => {
     // only do this if the change we just made resulted in a checked box
     // and multiSelect is enabled
@@ -130,13 +132,14 @@
       // as we iterate through the collection
       var checking = false
       checkboxes.forEach(box => {
-        // we find a checked box and are not currently checking all
-        if (box.checked && !checking) {
+        // we find either our lastChecked or our event target and are
+        // not currently checking all - this is where we'll start checking
+        if ((box === lastChecked || box === e.target) && !checking) {
           //turn on checking
           checking = true
           return;
         // find a checked box and we're already checking
-        } else if (box.checked && checking) {
+        } else if ((box === lastChecked || box === e.target) && checking) {
           // turn off checking
           checking = false
           return;
@@ -147,12 +150,15 @@
         }
       })
     }
+    if (e.target.checked) {
+      lastChecked = e.target
+    }
   }
 
   window.addEventListener('keydown', enableMultiSelect);
   window.addEventListener('keyup', disableMultiSelect);
   checkboxes.forEach(box => {
-    box.addEventListener('change', checkMultiple)
+    box.addEventListener('click', checkMultiple)
   })
 
 </script>
